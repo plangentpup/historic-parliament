@@ -1,5 +1,6 @@
 #!/usr/bin/python
 import mysql.connector
+from unicodeWriter import UnicodeWriter
 
 # import the database settings
 import settings
@@ -9,8 +10,6 @@ from HalfCentury import HalfCentury
 
 # import helper functions
 import helper
-
-
 
 # connect to our database
 cnx = mysql.connector.connect(
@@ -56,4 +55,12 @@ cursor.close()
 cnx.close()
 
 # print the results
-print [result.__dict__ for result in results]
+
+# output in csv
+with open('out.csv', 'wb') as f:
+  writer = UnicodeWriter(f)
+  writer.writerow(results[0].__dict__.keys())
+  for result in results:
+    writer.writerow(result.__dict__.values())
+
+print 'done'
