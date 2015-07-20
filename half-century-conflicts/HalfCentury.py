@@ -42,6 +42,8 @@ class HalfCentury(object):
     self.yearsInMajor = len(self.yearsInMajor)
     if self.numLosses > 0:
       self.winOverLoss = self.numVictories / self.numLosses
+    elif self.numVictories > 0:
+      self.winOverLoss = 1
     if self.numCompletedConflicts > 0:
       self.winOverTotal = self.numVictories / self.numCompletedConflicts
 

@@ -23,7 +23,7 @@ cnx = mysql.connector.connect(
 cursor = cnx.cursor(dictionary=True)
 
 # Use all the SQL you like
-cursor.execute("SELECT DISTINCT * FROM conflicts ORDER BY politybelligerent, cstart")
+cursor.execute("SELECT * FROM conflicts ORDER BY politybelligerent, cstart")
 
 # our output data. each element in the list is a HalfCentury object
 results = []
