@@ -30,17 +30,18 @@ results = []
 
 # iterate over each conflict
 for row in cursor:
+  belligerent = row['politybelligerent'].strip()
 
   # get every half century from cstart to cend inclusive
   half_century_list = HalfCentury.getHalfCenturyList(cstart=row['cstart'], cend=row['cend'])
 
   for half_century in half_century_list:
     # see if this half century already exists
-    halfCentury = helper.findHalfCentury(results, row['politybelligerent'], half_century)
+    halfCentury = helper.findHalfCentury(results, belligerent, half_century)
 
     if halfCentury == False:
       # create a new half century if we haven't already
-      halfCentury = HalfCentury(politybelligerent=row['politybelligerent'], year=half_century)
+      halfCentury = HalfCentury(politybelligerent=belligerent, year=half_century)
       results.append(halfCentury)
 
     # update the half century with data from the conflict
